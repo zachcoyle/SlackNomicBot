@@ -12,7 +12,9 @@ const msgDefaults = {
 
 const handler = (payload, res) => {
 
-  let RuleNumberArray = payload['text'].split(' ').shift() // Shift entfert erstes Element (immer "rules")
+  let RuleNumberArray = payload['text'].split(' ')
+  RuleNumberArray.shift()  // Shift entfert erstes Element (immer "rules")
+
   let attachments = []
 
   let RuleNumberCount = RuleNumberArray.length
