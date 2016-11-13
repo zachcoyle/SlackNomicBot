@@ -12,15 +12,15 @@ const msgDefaults = {
 
 let attachments = [
   {
-    title: 'Starbot will help you find the hippest repos on GitHub',
-    color: '#2FA44F',
-    text: '`/starbot repos` returns hip repos \n`/starbot javascript` returns hip JavaScript repos',
+    title: 'Nomic Bot liefert dir alle Regeln!',
+    color: '#FFFF00',
+    text: '`/nomic rules [number]` liefert die diese Regel',
     mrkdwn_in: ['text']
   },
   {
-    title: 'Configuring Starbot',
+    title: 'Punktestände',
     color: '#E3E4E6',
-    text: '`/starbot help` ... you\'re lookin at it! \n',
+    text: '`/nomic points {player}` liefert die die Punktestände',
     mrkdwn_in: ['text']
   }
 ]

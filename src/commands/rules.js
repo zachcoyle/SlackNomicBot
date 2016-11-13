@@ -12,7 +12,7 @@ const msgDefaults = {
 
 let attachments = [
   {
-    title: 'Test',
+    title: 'Regel ',
     color: '#2FA44F',
     text: '`/nomic rules {number}` returns the specified Rule',
     mrkdwn_in: ['text']
@@ -22,7 +22,12 @@ let attachments = [
 const handler = (payload, res) => {
   let msg = _.defaults({
     channel: payload.channel_name,
-    attachments: attachments
+      attachments:   {
+      title: 'Regel ',
+      color: '#2FA44F',
+      text: payload,
+      mrkdwn_in: ['text']
+    }
   }, msgDefaults)
 
   res.set('content-type', 'application/json')
