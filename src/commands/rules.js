@@ -29,7 +29,7 @@ const handler = (payload, res) => {
     {
       title: 'Regel',
       color: '#2FA44F',
-      text: toType(payload),
+      text: JSON.stringify(payload),
       mrkdwn_in: ['text']
     }
   ]
