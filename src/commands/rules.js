@@ -14,6 +14,7 @@ const handler = (payload, res) => {
   let RuleNumberArray = payload.split(" ").shift() // Shift entfert erstes Element (immer "rules")
   let attachments = []
 
+/*
   RuleNumberArray.forEach((RuleNumber) => {
     attachments.push({
       title: 'Regel ' + RuleNumber,
@@ -22,6 +23,16 @@ const handler = (payload, res) => {
       mrkdwn_in: ['text']
     })
   })
+*/
+
+  attachments = [
+    {
+      title: 'Regel',
+      color: '#2FA44F',
+      text: RuleNumberArray.join(),
+      mrkdwn_in: ['text']
+    }
+  ]
 
   let msg = _.defaults({
     channel: payload.channel_name,
