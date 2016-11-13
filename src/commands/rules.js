@@ -21,7 +21,7 @@ const handler = (payload, res) => {
     let RuleNumber = RuleNumberArray[j]
       attachments.push(
         {
-            title: 'Regel ' + RuleNumber,
+            title: 'Regel ' + JSON.stringify(RuleNumberArray),
             color: '#2FA44F',
             text: 'Regel Nummer ' + RuleNumber + ' ist unbekannt',
             mrkdwn_in: ['text']
