@@ -29,7 +29,7 @@ const handler = (payload, res) => {
     {
       title: 'Regel',
       color: '#2FA44F',
-      text: payload,
+      text: toType(payload),
       mrkdwn_in: ['text']
     }
   ]
@@ -42,6 +42,10 @@ const handler = (payload, res) => {
   res.set('content-type', 'application/json')
   res.status(200).json(msg)
   return
+}
+
+var toType = function(obj) {
+  return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
 }
 
 module.exports = { pattern: /rules/ig, handler: handler }
