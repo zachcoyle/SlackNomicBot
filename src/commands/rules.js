@@ -11,6 +11,7 @@ const msgDefaults = {
 }
 
 const handler = (payload, res) => {
+  /*
   let RuleNumberArray = payload.shift() // Shift entfert erstes Element (immer "rules")
   let attachments = []
 
@@ -22,6 +23,16 @@ const handler = (payload, res) => {
       mrkdwn_in: ['text']
     })
   })
+  */
+
+  let attachments = [
+    {
+      title: 'Regel',
+      color: '#2FA44F',
+      text: payload,
+      mrkdwn_in: ['text']
+    }
+  ]
 
   let msg = _.defaults({
     channel: payload.channel_name,
