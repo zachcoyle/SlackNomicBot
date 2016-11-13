@@ -10,24 +10,22 @@ const msgDefaults = {
   icon_emoji: config('ICON_EMOJI')
 }
 
-let attachments = [
-  {
-    title: 'Regel ',
-    color: '#2FA44F',
-    text: '`/nomic rules {number}` returns the specified Rule',
-    mrkdwn_in: ['text']
-  }
-]
-
 const handler = (payload, res) => {
+  let RuleNumberArray = payload.split(" ").shift() // Shift entfert erstes Element (immer "rules")
+  let attachments = []
+
+  RuleNumberArray.forEach((RuleNumber) => {
+    attachments.push({
+      title: 'Regel ' + RuleNumber,
+      color: '#2FA44F',
+      text: 'Regel Nummer ' + RuleNumber + ' ist unbekannt',
+      mrkdwn_in: ['text']
+    })
+  })
+
   let msg = _.defaults({
     channel: payload.channel_name,
-      attachments:   {
-      title: 'Regel ',
-      color: '#2FA44F',
-      text: payload,
-      mrkdwn_in: ['text']
-    }
+    attachments: attachments
   }, msgDefaults)
 
   res.set('content-type', 'application/json')
