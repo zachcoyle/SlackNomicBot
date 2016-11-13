@@ -41,3 +41,14 @@ app.post('/commands/starbot', (req, res) => {
 
   cmd.handler(payload, res)
 })
+
+app.listen(config('PORT'), (err) => {
+  if (err) throw err
+
+  console.log(`\n🚀  Starbot LIVES on PORT ${config('PORT')} 🚀`)
+
+  if (config('SLACK_TOKEN')) {
+    console.log(`🤖  beep boop: @starbot is reatime\n`)
+    bot.listen({ token: config('SLACK_TOKEN') })
+  }
+})
