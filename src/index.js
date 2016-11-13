@@ -7,7 +7,7 @@ const bodyParser = require('body-parser')
 const _ = require('lodash')
 const config = require('./config')
 const commands = require('./commands')
-const helpCommand = require('./commands/rules')
+const helpCommand = require('./commands/help')
 
 let bot = require('./bot')
 
