@@ -12,15 +12,9 @@ const msgDefaults = {
 
 let attachments = [
   {
-    title: 'Starbot will help you find the hippest repos on GitHub',
+    title: 'Test',
     color: '#2FA44F',
-    text: '`/starbot repos` returns hip repos \n`/starbot javascript` returns hip JavaScript repos',
-    mrkdwn_in: ['text']
-  },
-  {
-    title: 'Configuring Starbot',
-    color: '#E3E4E6',
-    text: '`/starbot help` ... you\'re lookin at it! \n',
+    text: '`/nomic rules {number}` returns the specified Rule',
     mrkdwn_in: ['text']
   }
 ]
@@ -36,4 +30,4 @@ const handler = (payload, res) => {
   return
 }
 
-module.exports = { pattern: /help/ig, handler: handler }
+module.exports = { pattern: /rules/ig, handler: handler }
