@@ -1,20 +1,16 @@
 {
-  "name": "starbot",
-  "description": "Starbot is GitHub's trending open-source page, reincarnated as a Slack bot",
-  "version": "1.0.0",
+  "name": "SlackNomicBot",
+  "description": "A Nomic help Bot for Slack. Based on Starbot.",
+  "version": "0.1.0",
   "main": "src/index.js",
   "scripts": {
     "start": "node ./src",
     "notify": "node ./src/tasks/notify",
-    "test": "standard"
+    "test": "standard --fix"
   },
   "author": {
-    "email": "creager@heroku.com",
-    "name": "Matthew Creager",
-    "url": "https://twitter.com/matt_creager"
-  },
-  "bugs": {
-    "url": "https://github.com/mattcreager"
+    "email": "jens.albert@jomagus.de",
+    "name": "Jens Albert"
   },
   "dependencies": {
     "body-parser": "^1.15.0",
@@ -35,5 +31,8 @@
   "license": "MIT",
   "engines": {
     "node": "5.7.1"
+  },
+  "devDependencies": {
+    "standard": "^8.5.0"
   }
 }

@@ -11,7 +11,6 @@ const msgDefaults = {
 }
 
 const handler = (payload, res) => {
-
   let RuleNumberArray = payload['text'].split(' ')
   RuleNumberArray.shift()  // Shift entfert erstes Element (immer "rules")
 
@@ -19,15 +18,16 @@ const handler = (payload, res) => {
 
   let RuleNumberCount = RuleNumberArray.length
 
-  for(let j = 0; j < RuleNumberCount; j++) {
+  for (let j = 0; j < RuleNumberCount; j++) {
     let RuleNumber = RuleNumberArray[j]
-      attachments.push(
-        {
-            title: 'Regel ' + RuleNumber,
-            color: '#2FA44F',
-            text: 'Regel Nummer ' + RuleNumber + ' ist unbekannt',
-            mrkdwn_in: ['text']
-        })
+    attachments.push(
+      {
+        title: 'Regel ' + RuleNumber,
+        color: '#2FA44F',
+        text: 'Regel Nummer ' + RuleNumber + ' ist unbekannt',
+        mrkdwn_in: ['text']
+      }
+    )
   }
 
   let msg = _.defaults({
@@ -38,10 +38,6 @@ const handler = (payload, res) => {
   res.set('content-type', 'application/json')
   res.status(200).json(msg)
   return
-}
-
-var toType = function(obj) {
-  return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
 }
 
 module.exports = { pattern: /rules/ig, handler: handler }
