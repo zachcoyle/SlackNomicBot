@@ -20,22 +20,23 @@ const handler = (payload, res) => {
   let attachments = []
   let RuleNumberCount = RuleNumberArray.length
 
+  for (let j = 0; j < RuleNumberCount; j++) {
+    let RuleNumber = RuleNumberArray[j]
+    attachments.push(
+      {
+        title: 'Regel ' + RuleNumber,
+        color: '#2FA44F',
+        text: 'Regel Nummer ' + RuleNumber + ' ist unbekannt',
+        mrkdwn_in: ['text']
+      }
+      )
+  }
+
   // verbinde DB für Regelabfrage
+  /*
   pg.connect(process.env.DATABASE_URL, function (err, client) {
     if (err) throw err
     console.log('Connected to postgres! Getting schemas...')
-
-    for (let j = 0; j < RuleNumberCount; j++) {
-      let RuleNumber = RuleNumberArray[j]
-      attachments.push(
-        {
-          title: 'Regel ' + RuleNumber,
-          color: '#2FA44F',
-          text: 'Regel Nummer ' + RuleNumber + ' ist unbekannt',
-          mrkdwn_in: ['text']
-        }
-      )
-    }
 
     let RowZeugs
     client
@@ -54,6 +55,7 @@ const handler = (payload, res) => {
       }
       )
   })
+  */
 
   let msg = _.defaults({
     channel: payload.channel_name,
