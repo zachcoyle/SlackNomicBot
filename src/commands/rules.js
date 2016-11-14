@@ -3,6 +3,9 @@
 
 const _ = require('lodash')
 const config = require('../config')
+const pg = require('pg');
+
+pg.defaults.ssl = true;
 
 const msgDefaults = {
   response_type: 'in_channel',
@@ -15,20 +18,41 @@ const handler = (payload, res) => {
   RuleNumberArray.shift()  // Shift entfert erstes Element (immer "rules")
 
   let attachments = []
-
   let RuleNumberCount = RuleNumberArray.length
 
-  for (let j = 0; j < RuleNumberCount; j++) {
-    let RuleNumber = RuleNumberArray[j]
-    attachments.push(
-      {
-        title: 'Regel ' + RuleNumber,
-        color: '#2FA44F',
-        text: 'Regel Nummer ' + RuleNumber + ' ist unbekannt',
-        mrkdwn_in: ['text']
-      }
-    )
-  }
+  // verbinde DB für Regelabfrage
+  pg.connect(process.env.DATABASE_URL, function(err, client) {
+    if (err) throw err;
+    console.log('Connected to postgres! Getting schemas...');
+
+    for (let j = 0; j < RuleNumberCount; j++) {
+      let RuleNumber = RuleNumberArray[j]
+      attachments.push(
+        {
+          title: 'Regel ' + RuleNumber,
+          color: '#2FA44F',
+          text: 'Regel Nummer ' + RuleNumber + ' ist unbekannt',
+          mrkdwn_in: ['text']
+        }
+      )
+    }
+
+    let RowZeugs;
+    client
+      .query('SELECT table_schema,table_name FROM information_schema.tables;')
+      .on('row', function(row) {
+        RowZeugs = JSON.stringify(row);
+      });
+
+      attachments.push(
+        {
+          title: 'DB Test',
+          color: '#FF0000',
+          text: RowZeugs,
+          mrkdwn_in: ['text']
+        }
+      )
+  });
 
   let msg = _.defaults({
     channel: payload.channel_name,
